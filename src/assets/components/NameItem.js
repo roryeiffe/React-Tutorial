@@ -7,14 +7,7 @@ export default class NameItem extends Component {
     render() {
         const name = this.props.name;
         return (
-            <div>
-                <button className = {styles.name} onClick = {this.props.delName.bind(this, name)}>{name}</button>
-            </div>
+            
         )
     }
-}
-
-NameItem.propTypes = {
-    name: PropTypes.string.isRequired,
-    delName: PropTypes.func.isRequired,
 }

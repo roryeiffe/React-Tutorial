@@ -4,9 +4,7 @@ import styles from "../css/header.module.css";
 export default class header extends Component {
     render() {
         return (
-            <div className = {[styles.header,this.props.className].join(" ")}>
-                {this.props.children}
-            </div>
+            
         )
     }
 }
