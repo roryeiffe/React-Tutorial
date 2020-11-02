@@ -1,0 +1,26 @@
+.wrapper {
+    background: var(--main-outline-color);
+    color:white;
+    border: solid;
+    border-color: black;
+    font-family: "Montserrat";
+    cursor: pointer;
+    text-align: center;
+    margin: auto;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.wrapper:focus {
+    outline-width: 0;
+}
+
+.wrapper:active {
+    background: var(--main-outline-color);
+    border-color: var(--main-outline-color);
+    color: white;
+}
+
+.wrapper p {
+    margin: 0;
+}
