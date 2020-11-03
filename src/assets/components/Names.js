@@ -5,7 +5,9 @@ import PropTypes from 'prop-types';
 // the name and, when clicked, deletes the name:
 export default class Names extends Component {
     render() {
-        
+        return <div>
+            <h1>Names</h1>
+        </div>
     }
 }
 

@@ -7,7 +7,9 @@ export default class NameItem extends Component {
     render() {
         const name = this.props.name;
         return (
-            
-        )
+            <div>
+                <h1>Name Item</h1>
+            </div>
+        );
     }
 }
