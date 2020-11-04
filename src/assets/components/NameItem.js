@@ -8,8 +8,15 @@ export default class NameItem extends Component {
         const name = this.props.name;
         return (
             <div>
-                <h1>Name Item</h1>
+                <button className = {styles.name} onClick = {this.props.delName.bind(this,name)}>
+                    {name}
+                </button>
             </div>
         );
     }
+}
+
+NameItem.propTypes = {
+    name: PropTypes.string.isRequired,
+    delName: PropTypes.func.isRequired
 }
