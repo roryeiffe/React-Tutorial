@@ -1,0 +1,7 @@
+Have node.js installed
+git clone https://github.com/roryeiffe/React-Tutorial.git
+cd React-Tutorial
+git checkout starter
+npm install
+npm start
+Open in localhost:3000

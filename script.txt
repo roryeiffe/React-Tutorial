@@ -1,0 +1,147 @@
+Presentation
+Setting everything up
+	Explain File Structure
+Setting up App.js (state)
+	Code:
+	*rcc tab* to create component
+	state = {
+    players: [
+      {
+        name: "Joe",
+        points: 0,
+      },
+      {
+        name: "Tim",
+        points: 0,
+      },
+      {
+        name: "Christina",
+        points: 0,
+      },
+    ],
+  };
+  <div className={styles.page}>
+    <div className={styles.leftBlock}></div>
+    <div className={styles.rightBlock}></div>
+    <div className={styles.above}>
+    	<h1>This is a React App </h1>
+    </div>
+  </div>
+Explain CSS modules
+	Bring up why app.css does work, but doesn't allow for repeated classnames
+	import styles from "./assets/css/app.module.css";
+Header component
+	<div className = {[styles.header,this.props.className].join(" ")}>
+        {this.props.children}
+    </div>
+
+    In app.js
+	import Header from "./assets/components/header";
+
+	<Header className={styles.header}>
+	    <p className={styles.header1}>Enter Player Names:</p>
+	    <p className={styles.header2}>(Tap to Delete)</p>
+	  </Header>
+
+Names component
+	import NameItem from "./NameItem";
+
+	Below:
+
+	Names.propTypes = {
+	    players: PropTypes.array.isRequired,
+	    delName: PropTypes.func.isRequired,
+	}
+
+	Inside:
+	return this.props.players.map((player) => (
+        <NameItem key = {player.name + "_"} name = {player.name}/>
+    ));
+
+Name component
+	Below:
+	NameItem.propTypes = {
+	    name: PropTypes.string.isRequired,
+	    delName: PropTypes.func.isRequired,
+	}
+
+	Inside:
+	const name = this.props.name;
+    return (
+        <div>
+            <button className = {styles.name} onClick = {this.props.delName.bind(this, name)}>{name}</button>
+        </div>
+    )
+
+    Add delName = {this.props.delName} to Name Items:
+    Add delName={this.delName} to App.js
+Write delete function
+	  // Delete name that you don't want to use by filtering out the names that
+	  // equals the name to be deleted:
+	  delName = (nameDel) => {
+	    this.setState({
+	      players: [
+	        ...this.state.players.filter((player) => player.name !== nameDel),
+	      ],
+	    });
+	  };
+AddName component
+	Below:
+	//Prop Types:
+	AddName.propTypes = {
+	    addName: PropTypes.func.isRequired
+	}
+	Inside:
+	state = {
+        title: ''
+    }
+    onSubmit = (e) => {
+        e.preventDefault();
+        this.props.addName(this.state.title);
+        this.setState({ title: '' });
+    }
+    onChange = (e) => this.setState({[e.target.name] : e.target.value});
+
+	<form onSubmit = {this.onSubmit}>
+        <input
+            type = "text"
+            name = "title"
+            placeholder = "Add Name..."
+            value = {this.state.title}
+            onChange = {this.onChange}
+            className = {styles.input}
+        />
+        <Button
+            type = "submit"
+            value = "Submit"
+            onClick = {this.onSubmit}
+            className = {styles.submit}
+        >
+        Submit
+        </Button> 
+        {/* <h1>State: {this.state.title}</h1> */}
+    </form>
+
+Write add function	
+    <AddName addName={this.addName} />
+      // Add Name
+  addName = (title) => {
+    let found = false;
+    var nameList = this.state.players;
+    // Cannot add duplicates:
+    for (var i = 0; i < nameList.length; i++) {
+      if (title === nameList[i].name) found = true;
+    }
+    var newPlayer = {
+      name: title,
+      points: 0,
+      answer: "new answer",
+    };
+    // Push new player
+    if (!found && title !== "" && this.state.players.length < 8)
+      nameList.push(newPlayer);
+    this.setState({ names: nameList });
+  };
+Try it out!
+
+Questions
